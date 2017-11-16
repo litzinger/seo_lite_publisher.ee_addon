@@ -139,7 +139,7 @@ class Seo_lite_publisher_ext {
         $langId = $this->currentLanguageId;
         $status = $this->currentStatus;
 
-        if (ee()->publisher_setting->show_fallback()) {
+        if ($this->publisherSetting->show_fallback()) {
             /** @var CI_DB_result $q */
             $translatedWhere = [
                 'publisher_lang_id' => $langId,
