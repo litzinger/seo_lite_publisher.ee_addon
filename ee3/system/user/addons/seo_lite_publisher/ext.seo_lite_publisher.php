@@ -215,8 +215,12 @@ class Seo_lite_publisher_ext {
             } else if (isset($where['url_title'])) {
                 if ($this->publisherSetting->get('url_translations')) {
                     /** @var CI_DB_result $entry */
-                    $entry = ee()->db->get_where('publisher_titles', array_merge(
-                        $where, array('url_title' => $where['url_title'])
+                    $entry = ee()->db->get_where('publisher_titles AS t', array_merge(
+                        $where, array(
+                            'url_title' => $where['url_title'],
+                            'lang_id' => $langId,
+                            'status' => $status,
+                        )
                     ));
 
                     if (!$entry->num_rows()) {
